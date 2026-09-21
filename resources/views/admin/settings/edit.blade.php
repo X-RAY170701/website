@@ -121,6 +121,46 @@
                     </div>
 
                     <div class="pt-6 border-t border-gray-100">
+                        <h3 class="font-semibold text-gray-900 mb-4">Statistik Pencapaian (tampil di beranda)</h3>
+                        <div class="grid sm:grid-cols-4 gap-6">
+                            <div>
+                                <x-input-label for="stat_customers" value="Pelanggan Puas" />
+                                <x-text-input id="stat_customers" name="stat_customers" type="text" class="mt-1 block w-full"
+                                              :value="old('stat_customers', $settings->stat_customers)" placeholder="500+" />
+                            </div>
+                            <div>
+                                <x-input-label for="stat_products" value="Produk Tersedia" />
+                                <x-text-input id="stat_products" name="stat_products" type="text" class="mt-1 block w-full"
+                                              :value="old('stat_products', $settings->stat_products)" placeholder="50+" />
+                            </div>
+                            <div>
+                                <x-input-label for="stat_experience" value="Tahun Pengalaman" />
+                                <x-text-input id="stat_experience" name="stat_experience" type="text" class="mt-1 block w-full"
+                                              :value="old('stat_experience', $settings->stat_experience)" placeholder="3+" />
+                            </div>
+                            <div>
+                                <x-input-label for="stat_satisfaction" value="Tingkat Kepuasan" />
+                                <x-text-input id="stat_satisfaction" name="stat_satisfaction" type="text" class="mt-1 block w-full"
+                                              :value="old('stat_satisfaction', $settings->stat_satisfaction)" placeholder="98%" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 border-t border-gray-100">
+                        <h3 class="font-semibold text-gray-900 mb-4">SEO & Pratinjau Media Sosial</h3>
+                        <div>
+                            <x-input-label for="meta_title" value="Judul SEO (tab browser & hasil pencarian)" />
+                            <x-text-input id="meta_title" name="meta_title" type="text" class="mt-1 block w-full"
+                                          :value="old('meta_title', $settings->meta_title)" />
+                        </div>
+                        <div class="mt-4">
+                            <x-input-label for="meta_description" value="Deskripsi SEO" />
+                            <textarea id="meta_description" name="meta_description" rows="2" maxlength="500"
+                                      class="mt-1 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">{{ old('meta_description', $settings->meta_description) }}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 border-t border-gray-100">
                         <x-input-label for="footer_text" value="Teks Footer" />
                         <x-text-input id="footer_text" name="footer_text" type="text" class="mt-1 block w-full"
                                       :value="old('footer_text', $settings->footer_text)" />

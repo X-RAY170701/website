@@ -21,6 +21,12 @@ class SiteSetting extends Model
         'facebook_url',
         'tiktok_url',
         'footer_text',
+        'stat_customers',
+        'stat_products',
+        'stat_experience',
+        'stat_satisfaction',
+        'meta_title',
+        'meta_description',
     ];
 
     public static function current(): self
@@ -34,6 +40,12 @@ class SiteSetting extends Model
             'whatsapp_number' => '6281234567890',
             'email' => 'halo@contohbrand.com',
             'footer_text' => 'Semua hak cipta dilindungi.',
+            'stat_customers' => '500+',
+            'stat_products' => '50+',
+            'stat_experience' => '3+',
+            'stat_satisfaction' => '98%',
+            'meta_title' => 'Nama Brand Anda — Produk Digital Berkualitas',
+            'meta_description' => 'Solusi digital untuk kebutuhan Anda: template, e-book, source code, dan jasa digital lainnya.',
         ]);
     }
 

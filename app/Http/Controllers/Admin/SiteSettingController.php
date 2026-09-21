@@ -33,6 +33,12 @@ class SiteSettingController extends Controller
             'facebook_url' => ['nullable', 'url', 'max:255'],
             'tiktok_url' => ['nullable', 'url', 'max:255'],
             'footer_text' => ['nullable', 'string', 'max:255'],
+            'stat_customers' => ['nullable', 'string', 'max:20'],
+            'stat_products' => ['nullable', 'string', 'max:20'],
+            'stat_experience' => ['nullable', 'string', 'max:20'],
+            'stat_satisfaction' => ['nullable', 'string', 'max:20'],
+            'meta_title' => ['nullable', 'string', 'max:255'],
+            'meta_description' => ['nullable', 'string', 'max:500'],
             'logo' => ['nullable', 'image', 'max:1024'],
             'hero_image' => ['nullable', 'image', 'max:2048'],
         ]);
