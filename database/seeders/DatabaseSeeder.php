@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             TestimonialSeeder::class,
             FaqSeeder::class,
+            ArticleSeeder::class,
         ]);
 
         \App\Models\SiteSetting::current();

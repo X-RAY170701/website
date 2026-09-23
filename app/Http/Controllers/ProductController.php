@@ -31,9 +31,16 @@ class ProductController extends Controller
         return view('products.index', compact('settings', 'products'));
     }
 
-    public function show(Product $product)
+    public function show(Request $request, Product $product)
     {
         abort_unless($product->is_active, 404);
+
+        // Debounce view counting per browser session so refreshing doesn't inflate the count.
+        $sessionKey = 'viewed_product_'.$product->id;
+        if (! $request->session()->has($sessionKey)) {
+            $product->increment('views_count');
+            $request->session()->put($sessionKey, true);
+        }
 
         $settings = SiteSetting::current();
         $related = Product::active()

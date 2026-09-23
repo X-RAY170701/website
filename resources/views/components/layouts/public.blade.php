@@ -23,16 +23,37 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
+    {{-- Terapkan tema gelap SEBELUM body dirender, supaya tidak ada kedipan warna salah --}}
+    <script>
+        (function () {
+            var theme = localStorage.getItem('theme');
+            var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans antialiased text-gray-800 bg-white" x-data="{ scrolled: false, showTop: false }"
+<body class="font-sans antialiased text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-950 transition-colors"
+      x-data="{
+          scrolled: false,
+          showTop: false,
+          dark: document.documentElement.classList.contains('dark'),
+          toggleDark() {
+              this.dark = !this.dark;
+              document.documentElement.classList.toggle('dark', this.dark);
+              localStorage.setItem('theme', this.dark ? 'dark' : 'light');
+          }
+      }"
       x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 10; showTop = window.scrollY > 500; })">
 
-    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-gray-100 transition-shadow"
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-gray-950/90 backdrop-blur border-b border-gray-100 dark:border-gray-800 transition-shadow"
             :class="scrolled ? 'shadow-md' : ''" x-data="{ open: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
-                <a href="{{ route('home') }}" class="flex items-center gap-2 font-extrabold text-lg text-indigo-600">
+                <a href="{{ route('home') }}" class="flex items-center gap-2 font-extrabold text-lg text-indigo-600 dark:text-indigo-400">
                     @if($settings->logo_url ?? null)
                         <img src="{{ $settings->logo_url }}" alt="{{ $settings->site_name }}" class="h-9 w-auto">
                     @else
@@ -43,35 +64,50 @@
                     <span>{{ $settings->site_name ?? config('app.name') }}</span>
                 </a>
 
-                <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-                    <a href="{{ route('home') }}" class="hover:text-indigo-600 {{ request()->routeIs('home') ? 'text-indigo-600' : 'text-gray-600' }}">Beranda</a>
-                    <a href="{{ route('products.index') }}" class="hover:text-indigo-600 {{ request()->routeIs('products.*') ? 'text-indigo-600' : 'text-gray-600' }}">Produk</a>
-                    <a href="{{ route('home') }}#tentang" class="hover:text-indigo-600 text-gray-600">Tentang</a>
-                    <a href="{{ route('home') }}#faq" class="hover:text-indigo-600 text-gray-600">FAQ</a>
-                    <a href="{{ route('home') }}#kontak" class="hover:text-indigo-600 text-gray-600">Kontak</a>
+                <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
+                    <a href="{{ route('home') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 {{ request()->routeIs('home') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-600 dark:text-gray-300' }}">Beranda</a>
+                    <a href="{{ route('products.index') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 {{ request()->routeIs('products.*') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-600 dark:text-gray-300' }}">Produk</a>
+                    <a href="{{ route('articles.index') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 {{ request()->routeIs('articles.*') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-600 dark:text-gray-300' }}">Artikel</a>
+                    <a href="{{ route('favorites') }}" class="hover:text-indigo-600 dark:hover:text-indigo-400 {{ request()->routeIs('favorites') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-600 dark:text-gray-300' }} inline-flex items-center gap-1">
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 21.364l-7.682-7.682a4.5 4.5 0 010-6.364z" /></svg>
+                        Favorit
+                    </a>
+                    <a href="{{ route('home') }}#kontak" class="hover:text-indigo-600 dark:hover:text-indigo-400 text-gray-600 dark:text-gray-300">Kontak</a>
                 </nav>
 
-                <div class="hidden md:block">
+                <div class="hidden md:flex items-center gap-3">
+                    <button @click="toggleDark()" aria-label="Ganti tema gelap/terang"
+                            class="inline-flex items-center justify-center h-9 w-9 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition">
+                        <svg x-show="!dark" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                        <svg x-show="dark" x-cloak class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                    </button>
                     <a href="{{ $settings->whatsapp_link ?? '#' }}" target="_blank" rel="noopener"
                        class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-500 transition">
                         Hubungi Kami
                     </a>
                 </div>
 
-                <button @click="open = !open" class="md:hidden p-2 text-gray-500" aria-label="Menu">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
+                <div class="flex items-center gap-2 md:hidden">
+                    <button @click="toggleDark()" aria-label="Ganti tema gelap/terang" class="p-2 text-gray-500 dark:text-gray-300">
+                        <svg x-show="!dark" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+                        <svg x-show="dark" x-cloak class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+                    </button>
+                    <button @click="open = !open" class="p-2 text-gray-500 dark:text-gray-300" aria-label="Menu">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
             </div>
 
             <div x-show="open" x-cloak class="md:hidden pb-4 space-y-1">
-                <a href="{{ route('home') }}" class="block py-2 text-gray-700">Beranda</a>
-                <a href="{{ route('products.index') }}" class="block py-2 text-gray-700">Produk</a>
-                <a href="{{ route('home') }}#tentang" class="block py-2 text-gray-700">Tentang</a>
-                <a href="{{ route('home') }}#faq" class="block py-2 text-gray-700">FAQ</a>
-                <a href="{{ route('home') }}#kontak" class="block py-2 text-gray-700">Kontak</a>
-                <a href="{{ $settings->whatsapp_link ?? '#' }}" target="_blank" class="block py-2 text-indigo-600 font-semibold">Hubungi Kami</a>
+                <a href="{{ route('home') }}" class="block py-2 text-gray-700 dark:text-gray-200">Beranda</a>
+                <a href="{{ route('products.index') }}" class="block py-2 text-gray-700 dark:text-gray-200">Produk</a>
+                <a href="{{ route('articles.index') }}" class="block py-2 text-gray-700 dark:text-gray-200">Artikel</a>
+                <a href="{{ route('favorites') }}" class="block py-2 text-gray-700 dark:text-gray-200">Favorit</a>
+                <a href="{{ route('home') }}#faq" class="block py-2 text-gray-700 dark:text-gray-200">FAQ</a>
+                <a href="{{ route('home') }}#kontak" class="block py-2 text-gray-700 dark:text-gray-200">Kontak</a>
+                <a href="{{ $settings->whatsapp_link ?? '#' }}" target="_blank" class="block py-2 text-indigo-600 dark:text-indigo-400 font-semibold">Hubungi Kami</a>
             </div>
         </div>
     </header>
@@ -144,6 +180,31 @@
         document.addEventListener('DOMContentLoaded', function () {
             if (window.AOS) { AOS.init({ duration: 700, once: true, offset: 60 }); }
         });
+
+        // Wishlist & "recently viewed" — disimpan di localStorage browser pengunjung,
+        // tidak perlu login/akun. Dipakai bareng oleh product card, halaman detail, dan halaman /favorit.
+        window.SiteStore = {
+            _read(key) {
+                try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch (e) { return []; }
+            },
+            _write(key, arr) {
+                try { localStorage.setItem(key, JSON.stringify(arr)); } catch (e) {}
+            },
+            has(key, id) { return this._read(key).includes(id); },
+            toggle(key, id) {
+                var arr = this._read(key);
+                var idx = arr.indexOf(id);
+                if (idx === -1) { arr.unshift(id); } else { arr.splice(idx, 1); }
+                this._write(key, arr);
+                return arr.includes(id);
+            },
+            addRecent(key, id, max) {
+                var arr = this._read(key).filter(x => x !== id);
+                arr.unshift(id);
+                this._write(key, arr.slice(0, max || 8));
+            },
+            list(key) { return this._read(key); },
+        };
     </script>
 </body>
 </html>

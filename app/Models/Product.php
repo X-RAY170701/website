@@ -25,6 +25,7 @@ class Product extends Model
         'is_featured',
         'is_active',
         'sort_order',
+        'views_count',
     ];
 
     protected $casts = [
@@ -32,6 +33,7 @@ class Product extends Model
         'is_featured' => 'boolean',
         'is_active' => 'boolean',
         'sort_order' => 'integer',
+        'views_count' => 'integer',
     ];
 
     protected static function booted(): void

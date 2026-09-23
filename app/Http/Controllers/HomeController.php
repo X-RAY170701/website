@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Faq;
 use App\Models\Product;
 use App\Models\SiteSetting;
@@ -16,7 +17,10 @@ class HomeController extends Controller
         $latestProducts = Product::active()->orderBy('sort_order')->take(8)->get();
         $testimonials = Testimonial::active()->orderBy('sort_order')->get();
         $faqs = Faq::active()->orderBy('sort_order')->get();
+        $latestArticles = Article::published()->orderByDesc('published_at')->take(3)->get();
 
-        return view('home', compact('settings', 'featuredProducts', 'latestProducts', 'testimonials', 'faqs'));
+        return view('home', compact(
+            'settings', 'featuredProducts', 'latestProducts', 'testimonials', 'faqs', 'latestArticles'
+        ));
     }
 }

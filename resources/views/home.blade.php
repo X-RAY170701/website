@@ -1,25 +1,25 @@
 <x-layouts.public :settings="$settings">
 
     {{-- Hero --}}
-    <section class="relative overflow-hidden bg-gradient-to-b from-indigo-50 to-white">
+    <section class="relative overflow-hidden bg-gradient-to-b from-indigo-50 to-white dark:from-gray-900 dark:to-gray-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 grid lg:grid-cols-2 gap-12 items-center">
             <div data-aos="fade-right">
-                <span class="inline-block rounded-full bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 mb-5">
+                <span class="inline-block rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-xs font-semibold px-3 py-1 mb-5">
                     {{ $settings->tagline }}
                 </span>
-                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
+                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 leading-tight">
                     {{ $settings->hero_title }}
                 </h1>
-                <p class="mt-6 text-lg text-gray-600">
+                <p class="mt-6 text-lg text-gray-600 dark:text-gray-400">
                     {{ $settings->hero_subtitle }}
                 </p>
                 <div class="mt-8 flex flex-wrap gap-4">
                     <a href="{{ route('products.index') }}"
-                       class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-500 transition shadow-lg shadow-indigo-200">
+                       class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-500 transition shadow-lg shadow-indigo-200 dark:shadow-none">
                         Lihat Produk
                     </a>
                     <a href="{{ $settings->whatsapp_link }}" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 hover:bg-gray-50 transition">
+                       class="inline-flex items-center gap-2 rounded-lg border border-gray-300 dark:border-gray-700 px-6 py-3 font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition">
                         Chat WhatsApp
                     </a>
                 </div>
@@ -40,7 +40,7 @@
     </section>
 
     {{-- Statistik pencapaian --}}
-    <section class="bg-indigo-600">
+    <section class="bg-indigo-600 dark:bg-indigo-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
             <div data-aos="fade-up" data-aos-delay="0">
                 <div class="text-3xl sm:text-4xl font-extrabold text-white">{{ $settings->stat_customers ?? '500+' }}</div>
@@ -62,22 +62,22 @@
     </section>
 
     {{-- Trust bar / value props --}}
-    <section class="border-y border-gray-100 bg-white">
+    <section class="border-y border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid sm:grid-cols-3 gap-8 text-center">
             <div data-aos="fade-up">
                 <div class="text-3xl mb-2">⚡</div>
-                <div class="font-semibold text-gray-900">Proses Cepat</div>
-                <p class="text-sm text-gray-500 mt-1">Pemesanan dan respon cepat lewat WhatsApp.</p>
+                <div class="font-semibold text-gray-900 dark:text-gray-100">Proses Cepat</div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Pemesanan dan respon cepat lewat WhatsApp.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="100">
                 <div class="text-3xl mb-2">🔒</div>
-                <div class="font-semibold text-gray-900">Terpercaya</div>
-                <p class="text-sm text-gray-500 mt-1">Kualitas produk terjamin dan konsisten.</p>
+                <div class="font-semibold text-gray-900 dark:text-gray-100">Terpercaya</div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Kualitas produk terjamin dan konsisten.</p>
             </div>
             <div data-aos="fade-up" data-aos-delay="200">
                 <div class="text-3xl mb-2">💬</div>
-                <div class="font-semibold text-gray-900">Layanan Ramah</div>
-                <p class="text-sm text-gray-500 mt-1">Konsultasi kebutuhan Anda sebelum membeli.</p>
+                <div class="font-semibold text-gray-900 dark:text-gray-100">Layanan Ramah</div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Konsultasi kebutuhan Anda sebelum membeli.</p>
             </div>
         </div>
     </section>
@@ -87,10 +87,10 @@
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="flex items-end justify-between mb-8" data-aos="fade-up">
             <div>
-                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Produk Unggulan</h2>
-                <p class="text-gray-500 mt-1">Pilihan terbaik dari kami untuk Anda.</p>
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">Produk Unggulan</h2>
+                <p class="text-gray-500 dark:text-gray-400 mt-1">Pilihan terbaik dari kami untuk Anda.</p>
             </div>
-            <a href="{{ route('products.index') }}" class="hidden sm:inline text-indigo-600 font-semibold hover:text-indigo-500">Lihat semua →</a>
+            <a href="{{ route('products.index') }}" class="hidden sm:inline text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-500">Lihat semua →</a>
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($featuredProducts as $i => $product)
@@ -104,11 +104,11 @@
 
     {{-- All / latest products --}}
     @if($latestProducts->count())
-    <section class="bg-gray-50 py-16">
+    <section class="bg-gray-50 dark:bg-gray-900 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-end justify-between mb-8" data-aos="fade-up">
-                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Produk Lainnya</h2>
-                <a href="{{ route('products.index') }}" class="text-indigo-600 font-semibold hover:text-indigo-500">Lihat semua →</a>
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">Produk Lainnya</h2>
+                <a href="{{ route('products.index') }}" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-500">Lihat semua →</a>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach($latestProducts->take(4) as $i => $product)
@@ -123,42 +123,42 @@
 
     {{-- About --}}
     <section id="tentang" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center" data-aos="fade-up">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Tentang {{ $settings->site_name }}</h2>
-        <p class="text-gray-600 leading-relaxed whitespace-pre-line">{{ $settings->about_text }}</p>
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">Tentang {{ $settings->site_name }}</h2>
+        <p class="text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-line">{{ $settings->about_text }}</p>
     </section>
 
     {{-- Testimoni --}}
     @if($testimonials->count())
-    <section class="bg-gray-50 py-16">
+    <section class="bg-gray-50 dark:bg-gray-900 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10" data-aos="fade-up">
-                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Apa Kata Mereka</h2>
-                <p class="text-gray-500 mt-2">Pengalaman nyata dari pelanggan kami.</p>
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">Apa Kata Mereka</h2>
+                <p class="text-gray-500 dark:text-gray-400 mt-2">Pengalaman nyata dari pelanggan kami.</p>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($testimonials as $i => $t)
-                    <div class="rounded-xl bg-white border border-gray-100 shadow-sm p-6 flex flex-col"
+                    <div class="rounded-xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-sm p-6 flex flex-col"
                          data-aos="fade-up" data-aos-delay="{{ min($i, 3) * 100 }}">
                         <div class="flex items-center gap-1 text-amber-400 mb-3">
                             @for($s = 1; $s <= 5; $s++)
-                                <svg class="h-4 w-4 {{ $s <= $t->rating ? 'fill-current' : 'fill-gray-200' }}" viewBox="0 0 20 20">
+                                <svg class="h-4 w-4 {{ $s <= $t->rating ? 'fill-current' : 'fill-gray-200 dark:fill-gray-600' }}" viewBox="0 0 20 20">
                                     <path d="M10 15.27L16.18 19l-1.64-7.03L20 7.24l-7.19-.61L10 0 7.19 6.63 0 7.24l5.46 4.73L3.82 19z"/>
                                 </svg>
                             @endfor
                         </div>
-                        <p class="text-gray-600 text-sm grow">&ldquo;{{ $t->content }}&rdquo;</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm grow">&ldquo;{{ $t->content }}&rdquo;</p>
                         <div class="mt-5 flex items-center gap-3">
                             @if($t->avatar_url)
                                 <img src="{{ $t->avatar_url }}" class="h-10 w-10 rounded-full object-cover" alt="{{ $t->name }}">
                             @else
-                                <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-indigo-100 text-indigo-600 font-semibold">
+                                <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 font-semibold">
                                     {{ $t->initial }}
                                 </span>
                             @endif
                             <div>
-                                <div class="font-semibold text-gray-900 text-sm">{{ $t->name }}</div>
+                                <div class="font-semibold text-gray-900 dark:text-gray-100 text-sm">{{ $t->name }}</div>
                                 @if($t->role)
-                                    <div class="text-xs text-gray-500">{{ $t->role }}</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">{{ $t->role }}</div>
                                 @endif
                             </div>
                         </div>
@@ -169,18 +169,49 @@
     </section>
     @endif
 
+    {{-- Artikel Terbaru --}}
+    @if($latestArticles->count())
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="flex items-end justify-between mb-8" data-aos="fade-up">
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">Artikel Terbaru</h2>
+                <p class="text-gray-500 dark:text-gray-400 mt-1">Tips dan wawasan seputar produk digital.</p>
+            </div>
+            <a href="{{ route('articles.index') }}" class="hidden sm:inline text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-500">Lihat semua →</a>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-6">
+            @foreach($latestArticles as $i => $article)
+                <a href="{{ route('articles.show', $article) }}" data-aos="fade-up" data-aos-delay="{{ $i * 100 }}"
+                   class="group flex flex-col rounded-xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-sm hover:shadow-lg transition overflow-hidden">
+                    <div class="aspect-[16/9] bg-gray-100 dark:bg-gray-800 overflow-hidden">
+                        @if($article->cover_image_url)
+                            <img src="{{ $article->cover_image_url }}" alt="{{ $article->title }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        @else
+                            <div class="w-full h-full flex items-center justify-center text-3xl bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900 dark:to-purple-900">📝</div>
+                        @endif
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs text-gray-400 dark:text-gray-500">{{ optional($article->published_at)->format('d M Y') }}</span>
+                        <h3 class="mt-1 font-semibold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition line-clamp-2">{{ $article->title }}</h3>
+                    </div>
+                </a>
+            @endforeach
+        </div>
+    </section>
+    @endif
+
     {{-- FAQ --}}
     @if($faqs->count())
     <section id="faq" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div class="text-center mb-10" data-aos="fade-up">
-            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Pertanyaan Umum</h2>
-            <p class="text-gray-500 mt-2">Hal-hal yang sering ditanyakan pelanggan.</p>
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">Pertanyaan Umum</h2>
+            <p class="text-gray-500 dark:text-gray-400 mt-2">Hal-hal yang sering ditanyakan pelanggan.</p>
         </div>
         <div class="space-y-3" data-aos="fade-up">
             @foreach($faqs as $faq)
-                <div x-data="{ open: false }" class="rounded-xl border border-gray-200 overflow-hidden">
-                    <button @click="open = !open" class="w-full flex items-center justify-between gap-4 px-5 py-4 text-left bg-white hover:bg-gray-50 transition">
-                        <span class="font-semibold text-gray-900">{{ $faq->question }}</span>
+                <div x-data="{ open: false }" class="rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+                    <button @click="open = !open" class="w-full flex items-center justify-between gap-4 px-5 py-4 text-left bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                        <span class="font-semibold text-gray-900 dark:text-gray-100">{{ $faq->question }}</span>
                         <svg class="h-5 w-5 text-gray-400 shrink-0 transition-transform" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
@@ -189,7 +220,7 @@
                          x-transition:enter="transition ease-out duration-200"
                          x-transition:enter-start="opacity-0 -translate-y-1"
                          x-transition:enter-end="opacity-100 translate-y-0"
-                         class="px-5 pb-4 text-sm text-gray-600 leading-relaxed">
+                         class="px-5 pb-4 text-sm text-gray-600 dark:text-gray-300 leading-relaxed bg-white dark:bg-gray-800">
                         {{ $faq->answer }}
                     </div>
                 </div>
@@ -199,51 +230,51 @@
     @endif
 
     {{-- Kontak / Form --}}
-    <section class="bg-gray-50 py-16" data-aos="fade-up">
+    <section class="bg-gray-50 dark:bg-gray-900 py-16" data-aos="fade-up">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10">
-                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Hubungi Kami</h2>
-                <p class="text-gray-500 mt-2">Punya pertanyaan? Kirim pesan, kami akan segera membalas.</p>
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">Hubungi Kami</h2>
+                <p class="text-gray-500 dark:text-gray-400 mt-2">Punya pertanyaan? Kirim pesan, kami akan segera membalas.</p>
             </div>
 
             @if(session('contact_status'))
-                <div class="mb-6 rounded-lg bg-green-50 border border-green-200 text-green-700 text-sm px-4 py-3 text-center">
+                <div class="mb-6 rounded-lg bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 text-sm px-4 py-3 text-center">
                     {{ session('contact_status') }}
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('contact.store') }}" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8 space-y-5">
+            <form method="POST" action="{{ route('contact.store') }}" class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 sm:p-8 space-y-5">
                 @csrf
                 <div class="grid sm:grid-cols-2 gap-5">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Nama *</label>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nama *</label>
                         <input type="text" name="name" value="{{ old('name') }}" required
-                               class="w-full rounded-lg border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+                               class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 focus:border-indigo-500 focus:ring-indigo-500">
                         @error('name') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email *</label>
                         <input type="email" name="email" value="{{ old('email') }}" required
-                               class="w-full rounded-lg border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+                               class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 focus:border-indigo-500 focus:ring-indigo-500">
                         @error('email') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                     </div>
                 </div>
                 <div class="grid sm:grid-cols-2 gap-5">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">No. HP/WhatsApp</label>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">No. HP/WhatsApp</label>
                         <input type="text" name="phone" value="{{ old('phone') }}"
-                               class="w-full rounded-lg border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+                               class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 focus:border-indigo-500 focus:ring-indigo-500">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Subjek</label>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Subjek</label>
                         <input type="text" name="subject" value="{{ old('subject') }}"
-                               class="w-full rounded-lg border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+                               class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 focus:border-indigo-500 focus:ring-indigo-500">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Pesan *</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Pesan *</label>
                     <textarea name="message" rows="4" required
-                              class="w-full rounded-lg border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">{{ old('message') }}</textarea>
+                              class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 focus:border-indigo-500 focus:ring-indigo-500">{{ old('message') }}</textarea>
                     @error('message') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
                 </div>
                 <button type="submit"
@@ -255,7 +286,7 @@
     </section>
 
     {{-- CTA --}}
-    <section class="bg-indigo-600" data-aos="fade-up">
+    <section class="bg-indigo-600 dark:bg-indigo-950" data-aos="fade-up">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
             <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Siap memulai?</h2>
             <p class="text-indigo-100 mb-8">Hubungi kami sekarang untuk konsultasi atau pemesanan produk digital Anda.</p>
