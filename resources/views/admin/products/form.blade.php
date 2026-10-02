@@ -81,10 +81,43 @@
                                           :value="old('cta_label', $product->cta_label ?: 'Pesan via WhatsApp')" />
                         </div>
                         <div>
-                            <x-input-label for="external_link" value="Link Eksternal (opsional)" />
+                            <x-input-label for="external_link" value="Link Demo Utama (opsional)" />
                             <x-text-input id="external_link" name="external_link" type="url" class="mt-1 block w-full"
                                           :value="old('external_link', $product->external_link)" placeholder="https://..." />
                         </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                            <x-input-label for="external_link_label" value="Label Demo Utama (opsional)" />
+                            <x-text-input id="external_link_label" name="external_link_label" type="text" class="mt-1 block w-full"
+                                          :value="old('external_link_label', $product->external_link_label)" placeholder="mis. Login Petugas" />
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-100">
+                        <p class="text-xs font-semibold text-gray-500 uppercase mb-3">Demo Kedua (opsional — tampil berdampingan di pratinjau)</p>
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <x-input-label for="external_link_2" value="Link Demo Kedua" />
+                                <x-text-input id="external_link_2" name="external_link_2" type="url" class="mt-1 block w-full"
+                                              :value="old('external_link_2', $product->external_link_2)" placeholder="https://..." />
+                            </div>
+                            <div>
+                                <x-input-label for="external_link_2_label" value="Label Demo Kedua" />
+                                <x-text-input id="external_link_2_label" name="external_link_2_label" type="text" class="mt-1 block w-full"
+                                              :value="old('external_link_2_label', $product->external_link_2_label)" placeholder="mis. Display TV (Publik)" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <x-input-label for="demo_note" value="Info Akses Demo (opsional)" />
+                        <textarea id="demo_note" name="demo_note" rows="2" maxlength="1000"
+                                  class="mt-1 block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+                                  placeholder="mis. Login: demo@contoh.com / passworddemo123">{{ old('demo_note', $product->demo_note) }}</textarea>
+                        <p class="mt-1 text-xs text-gray-400">Tampil sebagai kotak info terpisah di halaman detail produk, kalau diisi.</p>
                     </div>
 
                     <div>

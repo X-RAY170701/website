@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\ContactMessageController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\FaqController as AdminFaqController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\SiteSettingController;
@@ -14,24 +15,25 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-// Public site
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/produk', [ProductController::class, 'index'])->name('products.index');
-Route::get('/produk/{product:slug}', [ProductController::class, 'show'])->name('products.show');
-Route::get('/favorit', function () {
-    return view('favorites');
-})->name('favorites');
-Route::get('/artikel', [ArticleController::class, 'index'])->name('articles.index');
-Route::get('/artikel/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
+// Public site (dibungkus 'track.view' supaya kunjungannya tercatat untuk statistik dashboard admin)
+Route::middleware('track.view')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/produk', [ProductController::class, 'index'])->name('products.index');
+    Route::get('/produk/{product:slug}', [ProductController::class, 'show'])->name('products.show');
+    Route::get('/favorit', function () {
+        return view('favorites');
+    })->name('favorites');
+    Route::get('/artikel', [ArticleController::class, 'index'])->name('articles.index');
+    Route::get('/artikel/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
+});
+
 Route::post('/kontak', [ContactController::class, 'store'])->name('contact.store');
 
 // Lightweight JSON lookup used by client-side wishlist & "recently viewed" (localStorage-based)
 Route::get('/api/produk-by-ids', ProductLookupController::class)->name('api.products.lookup');
 
-// Admin dashboard (redirect straight to product management)
-Route::get('/dashboard', function () {
-    return redirect()->route('admin.products.index');
-})->middleware(['auth'])->name('dashboard');
+// Dashboard admin: ringkasan statistik kunjungan situs
+Route::get('/dashboard', [AdminDashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

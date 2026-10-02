@@ -41,14 +41,19 @@
                         $waMessage = rawurlencode("Halo, saya tertarik dengan produk \"{$product->name}\" di {$settings->site_name}. Bisa dibantu info lebih lanjut?");
                         $waLink = $settings->whatsapp_link.'?text='.$waMessage;
                     @endphp
-                    <a href="{{ $waLink }}" target="_blank" rel="noopener"
-                       class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-500 transition shadow-lg shadow-indigo-200 dark:shadow-none">
-                        {{ $product->cta_label }}
-                    </a>
                     @if($product->external_link)
                         <a href="{{ $product->external_link }}" target="_blank" rel="noopener"
+                           class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-500 transition shadow-lg shadow-indigo-200 dark:shadow-none">
+                            Lihat Demo
+                        </a>
+                        <a href="{{ $waLink }}" target="_blank" rel="noopener"
                            class="inline-flex items-center gap-2 rounded-lg border border-gray-300 dark:border-gray-700 px-6 py-3 font-semibold text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition">
-                            Lihat Detail/Demo
+                            {{ $product->cta_label }}
+                        </a>
+                    @else
+                        <a href="{{ $waLink }}" target="_blank" rel="noopener"
+                           class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-500 transition shadow-lg shadow-indigo-200 dark:shadow-none">
+                            {{ $product->cta_label }}
                         </a>
                     @endif
                     <button type="button" @click="fav = window.SiteStore.toggle('wishlist', {{ $product->id }})"
@@ -59,6 +64,16 @@
                         </svg>
                     </button>
                 </div>
+
+                @if($product->demo_note)
+                    <div class="mt-6 rounded-xl border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/40 px-4 py-3.5">
+                        <div class="flex items-center gap-2 text-amber-700 dark:text-amber-400 font-semibold text-sm mb-1">
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            Info Akses Demo
+                        </div>
+                        <p class="text-sm text-amber-800 dark:text-amber-300 whitespace-pre-line">{{ $product->demo_note }}</p>
+                    </div>
+                @endif
 
                 {{-- Bagikan produk --}}
                 @php
@@ -94,6 +109,43 @@
                 @endif
             </div>
         </div>
+
+        @if($product->external_link)
+            <div class="mt-16">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">Pratinjau Langsung</h2>
+                    <a href="{{ $product->external_link }}" target="_blank" rel="noopener"
+                       class="text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500">
+                        Buka di tab baru ↗
+                    </a>
+                </div>
+
+                @if($product->external_link_2)
+                    <div class="grid lg:grid-cols-2 gap-6">
+                        @include('products.partials.preview-panel', [
+                            'url' => $product->external_link,
+                            'label' => $product->external_link_label ?? 'Demo',
+                            'height' => 560,
+                        ])
+                        @include('products.partials.preview-panel', [
+                            'url' => $product->external_link_2,
+                            'label' => $product->external_link_2_label ?? 'Demo Lainnya',
+                            'height' => 560,
+                        ])
+                    </div>
+                @else
+                    @include('products.partials.preview-panel', [
+                        'url' => $product->external_link,
+                        'label' => null,
+                        'height' => 640,
+                    ])
+                @endif
+
+                <p class="mt-2 text-xs text-gray-400 dark:text-gray-500">
+                    Ini adalah demo yang benar-benar berjalan — coba langsung interaksinya di atas, atau buka di tab baru untuk tampilan penuh.
+                </p>
+            </div>
+        @endif
 
         @if($related->count())
             <div class="mt-20">
